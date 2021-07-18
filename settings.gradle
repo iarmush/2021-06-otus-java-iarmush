@@ -1,3 +1,4 @@
 rootProject.name = '2021-06-otus-java-iarmush'
 include 'lesson-01'
+include 'lesson-04'
 
