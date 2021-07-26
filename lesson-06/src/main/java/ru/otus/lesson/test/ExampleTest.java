@@ -1,8 +1,8 @@
-package ru.otus.lesson;
+package ru.otus.lesson.test;
 
-import ru.otus.lesson.annotations.After;
-import ru.otus.lesson.annotations.Before;
-import ru.otus.lesson.annotations.Test;
+import ru.otus.lesson.annotation.After;
+import ru.otus.lesson.annotation.Before;
+import ru.otus.lesson.annotation.Test;
 
 public class ExampleTest {
 
