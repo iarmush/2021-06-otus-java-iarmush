@@ -12,14 +12,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TestEngine {
-    public static final String ERROR_DURING_TEST_EXECUTION = "Error during test execution";
 
     public static void testClass(String className) {
         try {
             Class<?> clazz = Class.forName(className);
             test(clazz);
         } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
-            throw new RuntimeException(ERROR_DURING_TEST_EXECUTION);
+            throw new RuntimeException(e.getCause());
         }
     }
 
@@ -36,31 +35,23 @@ public class TestEngine {
 
         for (Method methodWithTestAnnotation : methodsWithTestAnnotation) {
             Object newInstance = constructor.newInstance();
-
             try {
-                for (Method methodWithBeforeAnnotation : methodsWithBeforeAnnotation) {
-                    methodWithBeforeAnnotation.invoke(newInstance);
-                }
-            } catch (Exception e) {
-                for (Method methodWithAfterAnnotation : methodsWithAfterAnnotation) {
-                    methodWithAfterAnnotation.invoke(newInstance);
-                }
-                return;
-            }
-
-            try {
+                executeAnnotatedMethod(methodsWithBeforeAnnotation, newInstance);
                 methodWithTestAnnotation.invoke(newInstance);
                 successMethods.add(methodWithTestAnnotation);
             } catch (Exception e) {
                 failedMethods.add(methodWithTestAnnotation);
             } finally {
-                for (Method methodWithAfterAnnotation : methodsWithAfterAnnotation) {
-                    methodWithAfterAnnotation.invoke(newInstance);
-                }
+                executeAnnotatedMethod(methodsWithAfterAnnotation, newInstance);
             }
         }
-
         printStatistics(methodsWithTestAnnotation, successMethods, failedMethods);
+    }
+
+    private static void executeAnnotatedMethod(List<Method> methodsWithBeforeAnnotation, Object newInstance) throws IllegalAccessException, InvocationTargetException {
+        for (Method methodWithBeforeAnnotation : methodsWithBeforeAnnotation) {
+            methodWithBeforeAnnotation.invoke(newInstance);
+        }
     }
 
     private static void printStatistics(List<Method> methodTestList, Set<Method> successMethods, Set<Method> failedMethods) {
