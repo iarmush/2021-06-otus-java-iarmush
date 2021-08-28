@@ -18,7 +18,7 @@ public class TestEngine {
             Class<?> clazz = Class.forName(className);
             test(clazz);
         } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
-            throw new RuntimeException(e.getCause());
+            throw new RuntimeException(e);
         }
     }
 
@@ -48,9 +48,9 @@ public class TestEngine {
         printStatistics(methodsWithTestAnnotation, successMethods, failedMethods);
     }
 
-    private static void executeAnnotatedMethod(List<Method> methodsWithBeforeAnnotation, Object newInstance) throws IllegalAccessException, InvocationTargetException {
-        for (Method methodWithBeforeAnnotation : methodsWithBeforeAnnotation) {
-            methodWithBeforeAnnotation.invoke(newInstance);
+    private static void executeAnnotatedMethod(List<Method> methodsWithAnnotation, Object obj) throws IllegalAccessException, InvocationTargetException {
+        for (Method methodWithBeforeAnnotation : methodsWithAnnotation) {
+            methodWithBeforeAnnotation.invoke(obj);
         }
     }
 
@@ -69,10 +69,12 @@ public class TestEngine {
             failedTests.append(failedMethod.getAnnotation(Test.class).value()).append(" ");
         }
 
-        System.out.printf("----------------------\n" +
-                        "Total: %d\n" +
-                        "Success: %d - %s\n" +
-                        "Failed: %d - %s\n",
+        System.out.printf("""
+                        ----------------------
+                        Total: %d
+                        Success: %d - %s
+                        Failed: %d - %s
+                        """,
                 countOfTests, countOfSuccessTests, successTests, countOfFailedTests, failedTests);
     }
 
