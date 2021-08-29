@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MyInvocationHandler implements InvocationHandler {
+public class LoggingInvocationHandler implements InvocationHandler {
     private final Class<? extends Annotation> LOG_ANNOTATION = Log.class;
-    private final ru.otus.lesson.Logging myClass = new ru.otus.lesson.LoggingImpl();
+    private final Logging myClass = new LoggingImpl();
     private final Set<String> methodsNamesSet;
 
-    MyInvocationHandler() throws ClassNotFoundException {
+    LoggingInvocationHandler() throws ClassNotFoundException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         Method[] methods = classLoader.loadClass(LoggingImpl.class.getCanonicalName()).getMethods();
 

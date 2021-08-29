@@ -2,7 +2,7 @@ package ru.otus.lesson;
 
 import ru.otus.lesson.annotation.Log;
 
-public class LoggingImpl implements ru.otus.lesson.Logging {
+public class LoggingImpl implements Logging {
 
     @Log
     @Override
