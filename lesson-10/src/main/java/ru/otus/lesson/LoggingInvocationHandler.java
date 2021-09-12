@@ -14,9 +14,9 @@ public class LoggingInvocationHandler implements InvocationHandler {
     private final Logging myClass = new LoggingImpl();
     private final Set<String> methodsNamesSet;
 
-    LoggingInvocationHandler() throws ClassNotFoundException {
+    LoggingInvocationHandler(Class<?> clazz) throws ClassNotFoundException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        Method[] methods = classLoader.loadClass(LoggingImpl.class.getCanonicalName()).getMethods();
+        Method[] methods = classLoader.loadClass(clazz.getCanonicalName()).getMethods();
 
         methodsNamesSet = Arrays.stream(methods)
                 .filter(method -> method.isAnnotationPresent(LOG_ANNOTATION))
