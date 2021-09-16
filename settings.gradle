@@ -3,5 +3,6 @@ include 'lesson-01'
 include 'lesson-04'
 include 'lesson-06'
 include 'lesson-08'
+include 'lesson-10'
 include 'lesson-12'
 
