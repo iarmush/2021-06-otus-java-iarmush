@@ -1,6 +1,7 @@
 package ru.otus.lesson.model;
 
 public class Message {
+
     private final long id;
     private final String field1;
     private final String field2;
@@ -19,7 +20,8 @@ public class Message {
     //todo: 1. Добавить поля field11 - field13 (для field13 используйте класс ObjectForMessage)
 
 
-    public Message(long id, String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
+    public Message(long id, String field1, String field2, String field3, String field4, String field5, String field6, String field7,
+        String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
         this.id = id;
         this.field1 = field1;
         this.field2 = field2;
@@ -94,8 +96,12 @@ public class Message {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Message message = (Message) o;
 
@@ -114,43 +120,44 @@ public class Message {
     @Override
     public String toString() {
         return "Message{" +
-                "id=" + id +
-                ", field1='" + field1 + '\'' +
-                ", field2='" + field2 + '\'' +
-                ", field3='" + field3 + '\'' +
-                ", field4='" + field4 + '\'' +
-                ", field5='" + field5 + '\'' +
-                ", field6='" + field6 + '\'' +
-                ", field7='" + field7 + '\'' +
-                ", field8='" + field8 + '\'' +
-                ", field9='" + field9 + '\'' +
-                ", field10='" + field10 + '\'' +
-                ", field11='" + field11 + '\'' +
-                ", field12='" + field12 + '\'' +
-                ", field13=" + field13 +
-                '}';
+            "id=" + id +
+            ", field1='" + field1 + '\'' +
+            ", field2='" + field2 + '\'' +
+            ", field3='" + field3 + '\'' +
+            ", field4='" + field4 + '\'' +
+            ", field5='" + field5 + '\'' +
+            ", field6='" + field6 + '\'' +
+            ", field7='" + field7 + '\'' +
+            ", field8='" + field8 + '\'' +
+            ", field9='" + field9 + '\'' +
+            ", field10='" + field10 + '\'' +
+            ", field11='" + field11 + '\'' +
+            ", field12='" + field12 + '\'' +
+            ", field13=" + field13 +
+            '}';
     }
 
     @Override
-    public Message clone () throws CloneNotSupportedException {
+    public Message clone() {
         return toBuilder()
-                .field1(this.field1)
-                .field2(this.field2)
-                .field3(this.field3)
-                .field4(this.field4)
-                .field5(this.field5)
-                .field6(this.field6)
-                .field7(this.field7)
-                .field8(this.field8)
-                .field9(this.field9)
-                .field10(this.field10)
-                .field11(this.field11)
-                .field12(this.field12)
-                .field13(this.field13.toClone())
-                .build();
+            .field1(this.field1)
+            .field2(this.field2)
+            .field3(this.field3)
+            .field4(this.field4)
+            .field5(this.field5)
+            .field6(this.field6)
+            .field7(this.field7)
+            .field8(this.field8)
+            .field9(this.field9)
+            .field10(this.field10)
+            .field11(this.field11)
+            .field12(this.field12)
+            .field13(this.field13.toClone())
+            .build();
     }
 
     public static class Builder {
+
         private final long id;
         private String field1;
         private String field2;
@@ -170,21 +177,22 @@ public class Message {
             this.id = id;
         }
 
-        private Builder(long id, String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10,
-                        String field11, String field12, ObjectForMessage field13) {
+        private Builder(long id, String field1, String field2, String field3, String field4, String field5, String field6, String field7,
+            String field8, String field9, String field10,
+            String field11, String field12, ObjectForMessage field13) {
             this.id = id;
-            this.field1 = copyField(field1);
-            this.field2 = copyField(field2);
-            this.field3 = copyField(field3);
-            this.field4 = copyField(field4);
-            this.field5 = copyField(field5);
-            this.field6 = copyField(field6);
-            this.field7 = copyField(field7);
-            this.field8 = copyField(field8);
-            this.field9 = copyField(field9);
-            this.field10 = copyField(field10);
-            this.field11 = copyField(field11);
-            this.field12 = copyField(field12);
+            this.field1 = field1;
+            this.field2 = field2;
+            this.field3 = field3;
+            this.field4 = field4;
+            this.field5 = field5;
+            this.field6 = field6;
+            this.field7 = field7;
+            this.field8 = field8;
+            this.field9 = field9;
+            this.field10 = field10;
+            this.field11 = field11;
+            this.field12 = field12;
             this.field13 = field13.toClone();
         }
 
@@ -254,11 +262,8 @@ public class Message {
         }
 
         public Message build() {
-            return new Message(id, field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
-        }
-
-        private String copyField(String s){
-            return s == null ? null : String.copyValueOf(s.toCharArray());
+            return new Message(id, field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12,
+                field13);
         }
     }
 }

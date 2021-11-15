@@ -75,7 +75,7 @@ class ComplexProcessorTest {
 
     @Test
     @DisplayName("Тестируем уведомления")
-    void notifyTest() {
+    void notifyTest() throws CloneNotSupportedException {
         //given
         var message = new Message.Builder(1L).field9("field9").build();
 

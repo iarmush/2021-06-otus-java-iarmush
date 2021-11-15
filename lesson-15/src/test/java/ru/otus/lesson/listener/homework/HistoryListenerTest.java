@@ -1,13 +1,12 @@
 package ru.otus.lesson.listener.homework;
 
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
+import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import ru.otus.lesson.model.Message;
 import ru.otus.lesson.model.ObjectForMessage;
-
-import java.util.ArrayList;
-
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class HistoryListenerTest {
 
@@ -24,9 +23,9 @@ class HistoryListenerTest {
         field13.setData(field13Data);
 
         var message = new Message.Builder(id)
-                .field10("field10")
-                .field13(field13)
-                .build();
+            .field10("field10")
+            .field13(field13)
+            .build();
 
         //when
         historyListener.onUpdated(message);
