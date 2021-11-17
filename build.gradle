@@ -58,3 +58,16 @@ allprojects {
     }
 }
 
+//print versions from BOM
+task managedVersions {
+    doLast {
+        dependencyManagement.managedVersions.each {
+            println it
+        }
+    }
+}
+
+//gradle -q hello
+task hello {
+    println 'Hello world!'
+}
