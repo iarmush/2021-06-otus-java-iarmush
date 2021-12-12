@@ -28,6 +28,15 @@ public class TransactionManagerHibernate implements TransactionManager {
         });
     }
 
+    @Override
+    public <T> T doInReadOnlyTransaction(TransactionAction<T> action) {
+        return wrapException(() -> {
+            try (var session = sessionFactory.openSession()) {
+                return action.apply(session);
+            }
+        });
+    }
+
     private <T> T wrapException(Callable<T> action) {
         try {
             return action.call();
