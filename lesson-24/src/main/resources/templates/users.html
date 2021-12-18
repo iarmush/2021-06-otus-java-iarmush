@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Пользователи</title>
+  <script>
+    function postUserData() {
+      let obj = {};
+      obj.role = document.getElementById('userRoleSelectBox').value
+      obj.login = document.getElementById('userLoginTextBox').value
+      obj.password = document.getElementById('userPasswordTextBox').value
+      fetch('api/user', {
+        method: "POST",
+        body: JSON.stringify(obj)
+      })
+    }
+    function reloadPage() {
+      window.location.reload();
+    }
+  </script>
+</head>
+
+<body>
+<#list users>
+<table style="width: 400px">
+  <thead>
+  <tr>
+    <td style="width: 50px">Id</td>
+    <td style="width: 150px">Роль</td>
+    <td style="width: 100px">Логин</td>
+    <td style="width: 100px">Пароль</td>
+  </tr>
+  </thead>
+  <tbody>
+  <#items as user>
+  <tr>
+    <td>${user.id}</td>
+    <td>${user.role}</td>
+    <td>${user.login}</td>
+    <td>${user.password}</td>
+  </tr>
+  </#items>
+  </tbody>
+</table>
+</#list>
+<h4>Добавить пользователя</h4>
+<form>
+  <input type="text" id="userLoginTextBox" placeholder="Логин">
+  <select name="Роль" id="userRoleSelectBox">
+    <option value="USER">Пользователь</option>
+    <option value="ADMIN" selected>Администратор</option>
+  </select>
+  <input type="text" id="userPasswordTextBox" placeholder="Пароль">
+  <input type="submit" value="Создать" onclick="postUserData()"/>
+  <input type="submit" value="Обновить" onclick="reloadPage()"/>
+</form>
+</body>
+</html>
