@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5430/demoDB
+    username: usr
+    password: pwd
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    org.springframework.jdbc.core.JdbcTemplate: TRACE
+
+# macos, web socket somehow doesn't work on port 8080
+# I couldn't find the reason
+server:
+  port: 8081
+
+msClient:
+  name: "dbMsClient"

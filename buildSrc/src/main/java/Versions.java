@@ -1,7 +1,5 @@
 public interface Versions {
-    String guava = "31.0.1-jre";
-    String apache_commons = "4.4";
-    String test_containers = "1.16.0";
+    String guava = "28.2-jre";
     String jmh = "1.32";
     String jol = "0.16";
     String asm = "9.1";
@@ -26,16 +24,12 @@ public interface Versions {
 
     String reflections = "0.9.12";
 
-
-    String sockjs = "1.5.1";
+    String sockjs = "1.1.2";
     String stomp = "2.3.3-1";
-    String bootstrap = "5.1.3";
-    String webJarsLocator = "0.48";
+    String bootstrap = "4.4.1-1";
     String swagger = "3.0.0";
 
     String jsr305 = "3.0.2";
 
     String grpc = "1.42.0";
-    String mapstruct = "1.4.2.Final";
-
 }
