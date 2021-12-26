@@ -17,6 +17,7 @@ public class GRPCClient {
     private static final int FIRST_VALUE = 1;
     private static final int LAST_VALUE = 10;
     private static long lastValueFromServer = 0;
+    private static long lastPostedValueFromServer = 0;
     private static long currentValue = 0;
 
     public static void main(String[] args) throws InterruptedException {
@@ -51,9 +52,14 @@ public class GRPCClient {
             }
         });
 
-        while (currentValue + lastValueFromServer + FIRST_VALUE <= LIMIT) {
+        while (currentValue <= LIMIT) {
             synchronized (syncObj) {
-                currentValue = currentValue + lastValueFromServer + FIRST_VALUE;
+                if (lastValueFromServer != lastPostedValueFromServer) {
+                    currentValue = currentValue + lastValueFromServer + 1;
+                    lastPostedValueFromServer = lastValueFromServer;
+                } else {
+                    currentValue = currentValue + 1;
+                }
             }
 
             System.out.println(Thread.currentThread().getName() + ": Current value: " + currentValue);
