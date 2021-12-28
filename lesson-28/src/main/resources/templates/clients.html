@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Пользователи</title>
+</head>
+
+<body>
+
+<table style="width: 400px">
+  <thead>
+  <tr>
+    <td style="width: 50px">Id</td>
+    <td style="width: 150px">Роль</td>
+    <td style="width: 100px">Логин</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="client: ${clients}">
+    <td><span th:text="${client.id}"></span></td>
+    <td><span th:text="${client.role}"></span></td>
+    <td><span th:text="${client.login}"></span></td>
+  </tr>
+  </tbody>
+</table>
+
+<h4>Добавить пользователя</h4>
+<form action="#" th:action="@{/clients}" th:object="${createClientDto}" th:method="post">
+  <input type="text" id="clientLoginTextBox" placeholder="Логин" th:field="*{login}">
+  <select name="Роль" id="clientRoleSelectBox" th:field="*{role}">
+    <option value="USER">Пользователь</option>
+    <option value="ADMIN" selected>Администратор</option>
+  </select>
+  <input type="submit" value="Создать"/>
+</form>
+
+<h4>Изменить пользователя</h4>
+<form action="#" th:action="@{/clients/edit}" th:object="${updateClientDto}" th:method="post">
+  <input type="text" id="clientIdTextBox" placeholder="ID" th:field="*{id}">
+  <input type="text" id="clientLoginTextBoxUpdate" placeholder="Логин" th:field="*{login}">
+  <select name="Роль" id="clientRoleSelectBoxUpdate" th:field="*{role}">
+    <option value="USER">Пользователь</option>
+    <option value="ADMIN" selected>Администратор</option>
+  </select>
+  <input type="submit" value="Изменить"/>
+</form>
+</body>
+</html>

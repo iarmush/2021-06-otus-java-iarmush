@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation("ch.qos.logback:logback-classic")
+    implementation('org.flywaydb:flyway-core')
+    implementation("org.postgresql:postgresql")
+    implementation("com.google.code.gson:gson:${Versions.gson}")
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.6'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.with {
+        encoding = 'UTF-8'
+    }
+}

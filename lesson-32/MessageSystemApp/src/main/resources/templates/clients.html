@@ -1,0 +1,67 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Пользователи</title>
+</head>
+
+<body>
+
+<h4>Подключение к вебсокетам:</h4>
+<button id="connect" type="submit">Подключиться</button>
+<button id="disconnect" type="submit">Отключиться</button>
+
+<h4>Данные пользователей:</h4>
+<table id="clients-table" style="width: 400px">
+  <thead>
+  <tr>
+    <td style="width: 50px">Id</td>
+    <td style="width: 150px">Роль</td>
+    <td style="width: 100px">Логин</td>
+  </tr>
+  </thead>
+  <tbody id="clients">
+</table>
+<button id="clients-get" type="submit">Показать имеющихся</button>
+<button id="clients-hide" type="submit">Скрыть имеющихся</button>
+
+<h4>Добавить пользователя</h4>
+<form method="post">
+  <label for="client-login-save">Логин:</label>
+  <input type="text" id="client-login-save" placeholder="Логин" required>
+
+  <label for="client-role-save">Роль:</label>
+  <select name="Роль" id="client-role-save">
+    <option value="USER">Пользователь</option>
+    <option value="ADMIN" selected>Администратор</option>
+  </select>
+
+  <button id="client-save" type="submit">Сохранить</button>
+</form>
+
+<h4>Изменить пользователя</h4>
+<form method="post">
+  <label for="client-id-edit">Id:</label>
+  <input type="text" id="client-id-edit" placeholder="Id" required>
+
+  <label for="client-login-edit">Логин</label>
+  <input type="text" id="client-login-edit" placeholder="Логин" required>
+
+  <label for="client-role-edit">Роль:</label>
+  <select name="Роль" id="client-role-edit">
+    <option value="USER">Пользователь</option>
+    <option value="ADMIN" selected>Администратор</option>
+  </select>
+
+  <button id="client-edit" type="submit">Изменить</button>
+</form>
+
+
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="js/clients.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.5.5'
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+dependencies {
+    implementation project(':lesson-32:MessageSystem')
+
+    implementation("ch.qos.logback:logback-classic")
+
+    implementation("ch.qos.logback:logback-classic")
+    implementation('org.flywaydb:flyway-core')
+    implementation("org.postgresql:postgresql")
+
+    implementation 'org.webjars:webjars-locator-core'
+    implementation 'org.webjars:sockjs-client'
+    implementation 'org.webjars:stomp-websocket'
+    implementation 'org.webjars:bootstrap'
+
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.with {
+        encoding = 'UTF-8'
+    }
+}
